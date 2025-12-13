@@ -1,0 +1,101 @@
+import { Component, inject } from '@angular/core';
+import { AsyncPipe, DatePipe } from '@angular/common';
+import { MockDataService } from '../../../core/services/mock-data.service';
+
+@Component({
+    selector: 'app-loans',
+    standalone: true,
+    imports: [AsyncPipe, DatePipe],
+    template: `
+    <div class="space-y-8">
+      <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
+         <div>
+            <h2 class="text-3xl font-serif font-bold text-slate-800 tracking-tight">Empréstimos</h2>
+            <p class="text-slate-500 mt-1">Controle de saídas e devoluções.</p>
+         </div>
+         <button class="bg-blue-600 text-white px-6 py-3 rounded-xl hover:bg-blue-700 transition-all shadow-md font-medium flex items-center gap-2">
+            <span class="text-xl leading-none">+</span> Novo Empréstimo
+         </button>
+      </div>
+
+      <!-- Filters -->
+      <div class="flex gap-2 pb-2 overflow-x-auto">
+          <button class="px-4 py-2 bg-slate-800 text-white rounded-xl text-sm font-medium shadow-sm border border-transparent">Todos</button>
+          <button class="px-4 py-2 bg-white text-slate-600 rounded-xl text-sm font-medium border border-slate-200 hover:bg-slate-50 transition-colors">Em dia</button>
+          <button class="px-4 py-2 bg-white text-slate-600 rounded-xl text-sm font-medium border border-slate-200 hover:bg-slate-50 transition-colors">Atrasados</button>
+          <button class="px-4 py-2 bg-white text-slate-600 rounded-xl text-sm font-medium border border-slate-200 hover:bg-slate-50 transition-colors">Devolvidos</button>
+      </div>
+
+      @if (loans$ | async; as loans) {
+        <div class="bg-white rounded-2xl shadow-sm border border-slate-100 overflow-hidden">
+           <div class="overflow-x-auto">
+               <table class="w-full text-left border-collapse">
+                  <thead class="bg-slate-50 border-b border-slate-100 text-xs uppercase text-slate-500 font-bold tracking-wider">
+                      <tr>
+                          <th class="p-6">Livro</th>
+                          <th class="p-6">Leitor</th>
+                          <th class="p-6">Data Empréstimo</th>
+                          <th class="p-6">Previsão Entrega</th>
+                          <th class="p-6">Status</th>
+                          <th class="p-6"></th>
+                      </tr>
+                  </thead>
+                  <tbody class="divide-y divide-slate-50">
+                      @for (loan of loans; track loan.id) {
+                          <tr class="hover:bg-slate-50 transition-colors group">
+                              <td class="p-6 font-medium text-slate-900">
+                                  <div class="flex items-center gap-3">
+                                      <div class="w-8 h-10 bg-slate-200 rounded flex items-center justify-center text-xs">📖</div>
+                                      {{ loan.bookTitle }}
+                                  </div>
+                              </td>
+                              <td class="p-6 text-slate-600">
+                                  <div class="flex items-center gap-2">
+                                      <div class="w-6 h-6 rounded-full bg-slate-100 text-xs flex items-center justify-center text-blue-600 font-bold">
+                                          {{ loan.userName.charAt(0) }}
+                                      </div>
+                                      {{ loan.userName }}
+                                  </div>
+                              </td>
+                              <td class="p-6 text-slate-500 font-mono text-sm">{{ loan.loanDate | date:'dd/MM/yyyy' }}</td>
+                              <td class="p-6 text-slate-500 font-mono text-sm">{{ loan.returnDate | date:'dd/MM/yyyy' }}</td>
+                              <td class="p-6">
+                                  <span class="px-3 py-1 rounded-lg text-xs font-bold inline-flex items-center gap-1"
+                                        [class.bg-emerald-100]="loan.status === 'Em dia'"
+                                        [class.text-emerald-700]="loan.status === 'Em dia'"
+                                        [class.bg-rose-100]="loan.status === 'Atrasado'"
+                                        [class.text-rose-700]="loan.status === 'Atrasado'"
+                                        [class.bg-slate-100]="loan.status === 'Devolvido'"
+                                        [class.text-slate-600]="loan.status === 'Devolvido'">
+                                      <span class="w-1.5 h-1.5 rounded-full"
+                                            [class.bg-emerald-500]="loan.status === 'Em dia'"
+                                            [class.bg-rose-500]="loan.status === 'Atrasado'"
+                                            [class.bg-slate-400]="loan.status === 'Devolvido'"></span>
+                                      {{ loan.status }}
+                                  </span>
+                              </td>
+                              <td class="p-6 text-right">
+                                  <button class="text-slate-400 hover:text-blue-600 transition-colors opacity-0 group-hover:opacity-100">
+                                      Editar
+                                  </button>
+                              </td>
+                          </tr>
+                      }
+                  </tbody>
+               </table>
+           </div>
+           @if (loans.length === 0) {
+               <div class="p-12 text-center text-slate-400 flex flex-col items-center">
+                   <span class="text-4xl mb-2">📭</span>
+                   Nenhum empréstimo ativo encontrada.
+               </div>
+           }
+        </div>
+      }
+    </div>
+  `
+})
+export class LoansComponent {
+    private dataService = inject(MockDataService);
+    loans$ = this.dataService.getLoans();
+}

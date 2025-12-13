@@ -18,14 +18,15 @@
                     </a>
                 </li>
             </ul>
-            <button
+            <button routerLink="/login"
                 class="bg-indigo-900 hover:bg-indigo-800 text-white px-6 py-2.5 rounded-full font-medium transition-all duration-300 transform hover:shadow-lg hover:-translate-y-0.5 text-sm cursor-pointer">
                 Acessar Biblioteca
             </button>
         </nav>
 
         <!-- Mobile Menu Button -->
-        <button (click)="toggleMenu()" class="md:hidden text-stone-600 focus:outline-none p-2 cursor-pointer" aria-label="Toggle menu">
+        <button (click)="toggleMenu()" class="md:hidden text-stone-600 focus:outline-none p-2 cursor-pointer"
+            aria-label="Toggle menu">
             <svg *ngIf="!isMobileMenuOpen" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                 stroke-width="1.5" stroke="currentColor" class="w-8 h-8">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
@@ -48,7 +49,7 @@
                 </a>
             </li>
         </ul>
-        <button
+        <button routerLink="/login"
             class="w-full bg-indigo-900 hover:bg-indigo-800 text-white px-6 py-3 rounded-xl font-medium transition-colors cursor-pointer">
             Acessar Biblioteca
         </button>
