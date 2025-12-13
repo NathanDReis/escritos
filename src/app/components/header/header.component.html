@@ -1,0 +1,56 @@
+<header class="bg-white/90 backdrop-blur-md sticky top-0 z-50 border-b border-stone-100 shadow-sm">
+    <div class="container mx-auto px-4 md:px-6 h-20 flex items-center justify-between">
+        <!-- Logo -->
+        <div class="flex items-center gap-2">
+            <div
+                class="w-10 h-10 bg-indigo-900 rounded-lg flex items-center justify-center text-white font-serif font-bold text-xl">
+                E</div>
+            <span class="text-2xl font-serif font-bold text-stone-800 tracking-tight">Escritos</span>
+        </div>
+
+        <!-- Desktop Navigation -->
+        <nav class="hidden md:flex items-center gap-8">
+            <ul class="flex gap-8">
+                <li *ngFor="let item of menuItems">
+                    <a [href]="item.link"
+                        class="text-stone-600 hover:text-indigo-900 font-medium transition-colors duration-200 text-sm tracking-wide">
+                        {{ item.label }}
+                    </a>
+                </li>
+            </ul>
+            <button
+                class="bg-indigo-900 hover:bg-indigo-800 text-white px-6 py-2.5 rounded-full font-medium transition-all duration-300 transform hover:shadow-lg hover:-translate-y-0.5 text-sm cursor-pointer">
+                Acessar Biblioteca
+            </button>
+        </nav>
+
+        <!-- Mobile Menu Button -->
+        <button (click)="toggleMenu()" class="md:hidden text-stone-600 focus:outline-none p-2 cursor-pointer" aria-label="Toggle menu">
+            <svg *ngIf="!isMobileMenuOpen" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                stroke-width="1.5" stroke="currentColor" class="w-8 h-8">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+            </svg>
+            <svg *ngIf="isMobileMenuOpen" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                stroke-width="1.5" stroke="currentColor" class="w-8 h-8">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+            </svg>
+        </button>
+    </div>
+
+    <!-- Mobile Navigation Menu -->
+    <div *ngIf="isMobileMenuOpen"
+        class="md:hidden absolute top-full left-0 w-full bg-white border-b border-stone-200 shadow-lg py-4 px-4 flex flex-col gap-4 animate-in slide-in-from-top-2 duration-200">
+        <ul class="flex flex-col gap-4">
+            <li *ngFor="let item of menuItems">
+                <a [href]="item.link" (click)="closeMenu()"
+                    class="block text-stone-700 hover:text-indigo-900 font-medium py-2 border-b border-stone-50 last:border-0 hover:bg-stone-50 px-2 rounded-lg transition-colors">
+                    {{ item.label }}
+                </a>
+            </li>
+        </ul>
+        <button
+            class="w-full bg-indigo-900 hover:bg-indigo-800 text-white px-6 py-3 rounded-xl font-medium transition-colors cursor-pointer">
+            Acessar Biblioteca
+        </button>
+    </div>
+</header>
