@@ -17,17 +17,7 @@ import { AboutComponent } from './components/about.component';
         CtaComponent,
         FooterComponent
     ],
-    template: `
-    <div class="min-h-screen bg-white font-sans text-stone-900 antialiased selection:bg-indigo-100 selection:text-indigo-900">
-      <app-header></app-header>
-      <main>
-        <app-hero></app-hero>
-        <app-about></app-about>
-        <app-categories></app-categories>
-        <app-cta></app-cta>
-      </main>
-      <app-footer></app-footer>
-    </div>
-  `
+    templateUrl: './lading.component.html',
+    styles: ``
 })
 export class LandingComponent { }
