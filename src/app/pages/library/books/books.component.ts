@@ -8,7 +8,7 @@ import { FormsModule } from '@angular/forms';
    standalone: true,
    imports: [AsyncPipe, FormsModule],
    templateUrl: './books.component.html',
-   styleUrl: './books.component.css'
+   styles: ``
 })
 export class BooksComponent {
    private dataService = inject(MockDataService);

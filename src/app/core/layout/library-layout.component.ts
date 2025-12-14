@@ -7,7 +7,7 @@ import { AuthService } from '../auth/auth.service';
   standalone: true,
   imports: [RouterOutlet, RouterLink, RouterLinkActive],
   templateUrl: './library-layout.component.html',
-  styleUrl: './library-layout.component.css'
+  styles: ``
 })
 export class LibraryLayoutComponent {
   private authService = inject(AuthService);
@@ -15,6 +15,16 @@ export class LibraryLayoutComponent {
   // Computed signals would be better but keeping simple
   userName = () => this.authService.currentUser()?.name || 'Visitante';
   userInitials = () => this.userName().slice(0, 2).toUpperCase();
+
+  isMobileSidebarOpen = false;
+
+  toggleMobileSidebar() {
+    this.isMobileSidebarOpen = !this.isMobileSidebarOpen;
+  }
+
+  closeMobileSidebar() {
+    this.isMobileSidebarOpen = false;
+  }
 
   logout() {
     this.authService.logout();

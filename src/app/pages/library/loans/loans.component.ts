@@ -7,7 +7,7 @@ import { MockDataService } from '../../../core/services/mock-data.service';
     standalone: true,
     imports: [AsyncPipe, DatePipe],
     templateUrl: './loans.component.html',
-    styleUrl: './loans.component.css'
+    styles: ``
 })
 export class LoansComponent {
     private dataService = inject(MockDataService);

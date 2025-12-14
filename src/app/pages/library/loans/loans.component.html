@@ -11,16 +11,23 @@
     </div>
 
     <!-- Filters -->
-    <div class="flex gap-2 pb-2 overflow-x-auto">
+    <div class="flex gap-2 pb-2 overflow-x-auto flex-wrap">
         <button
-            class="px-4 py-2 bg-slate-800 text-white rounded-xl text-sm font-medium shadow-sm border border-transparent cursor-pointer">Todos</button>
+            class="px-4 py-2 bg-slate-800 text-white rounded-xl text-sm font-medium shadow-sm border border-transparent grow cursor-pointer">
+            Todos
+        </button>
         <button
-            class="px-4 py-2 bg-white text-slate-600 rounded-xl text-sm font-medium border border-slate-200 hover:bg-slate-50 transition-colors cursor-pointer">Em
-            dia</button>
+            class="px-4 py-2 bg-white text-slate-600 rounded-xl text-sm font-medium border border-slate-200 hover:bg-slate-50 transition-colors grow cursor-pointer">Em
+            dia
+        </button>
         <button
-            class="px-4 py-2 bg-white text-slate-600 rounded-xl text-sm font-medium border border-slate-200 hover:bg-slate-50 transition-colors cursor-pointer">Atrasados</button>
+            class="px-4 py-2 bg-white text-slate-600 rounded-xl text-sm font-medium border border-slate-200 hover:bg-slate-50 transition-colors grow cursor-pointer">
+            Atrasados
+        </button>
         <button
-            class="px-4 py-2 bg-white text-slate-600 rounded-xl text-sm font-medium border border-slate-200 hover:bg-slate-50 transition-colors cursor-pointer">Devolvidos</button>
+            class="px-4 py-2 bg-white text-slate-600 rounded-xl text-sm font-medium border border-slate-200 hover:bg-slate-50 transition-colors grow cursor-pointer">
+            Devolvidos
+        </button>
     </div>
 
     @if (loans$ | async; as loans) {
