@@ -1,0 +1,54 @@
+.scroll-to-top {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.9);
+    color: #333;
+    border: none;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    cursor: pointer;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    /* Initial state: hidden and scaled down */
+    opacity: 0;
+    transform: scale(0.8) translateY(20px);
+    pointer-events: none;
+
+    /* Transitions */
+    transition: opacity 0.3s ease, transform 0.3s ease, background-color 0.2s, box-shadow 0.2s;
+}
+
+.scroll-to-top.visible {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+    pointer-events: auto;
+}
+
+.scroll-to-top:hover {
+    background-color: #fff;
+    transform: scale(1.1);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
+}
+
+.scroll-to-top:active {
+    transform: scale(0.95);
+}
+
+/* Dark mode support if applicable, adjusting for generic transparent feel */
+@media (prefers-color-scheme: dark) {
+    .scroll-to-top {
+        background-color: rgba(30, 30, 30, 0.9);
+        color: #fff;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+    }
+
+    .scroll-to-top:hover {
+        background-color: #2a2a2a;
+    }
+}
