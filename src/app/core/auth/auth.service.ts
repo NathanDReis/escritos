@@ -1,42 +1,49 @@
-import { Injectable, signal } from '@angular/core';
+import { inject, Injectable, signal } from '@angular/core';
 import { Router } from '@angular/router';
-import { Observable, of, delay, tap } from 'rxjs';
+import { Auth, signInWithEmailAndPassword, signOut, user, UserCredential } from '@angular/fire/auth';
+import { Observable, from, throwError } from 'rxjs';
+import { tap, catchError } from 'rxjs/operators';
+import { mapFirebaseAuthError } from './firebase-auth-error.mapper';
 
-@Injectable({
-    providedIn: 'root'
+@Injectable({ 
+    providedIn: 'root' 
 })
 export class AuthService {
-    // Signal to track auth state
-    isAuthenticated = signal<boolean>(false);
 
-    // Mock user info
-    currentUser = signal<{ name: string, email: string } | null>(null);
+  private auth = inject(Auth);
+  private router = inject(Router);
 
-    constructor(private router: Router) {
-        // Check localStorage on init implementation could go here
-        const storedAuth = localStorage.getItem('escritos_auth');
-        if (storedAuth === 'true') {
-            this.isAuthenticated.set(true);
-            this.currentUser.set({ name: 'Usuário Mock', email: 'admin@escritos.com' });
+  // Signals
+  isAuthenticated = signal<boolean>(false);
+  currentUser = signal<{ uid: string; email: string | null } | null>(null);
+
+  constructor() {
+    user(this.auth).subscribe(firebaseUser => {
+        if (!firebaseUser) {
+            this.isAuthenticated.set(false);
+            this.currentUser.set(null);
+            return;
         }
-    }
 
-    login(email: string, password: string): Observable<boolean> {
-        // Mock login delay
-        return of(true).pipe(
-            delay(800),
-            tap(() => {
-                this.isAuthenticated.set(true);
-                this.currentUser.set({ name: 'Usuário Mock', email });
-                localStorage.setItem('escritos_auth', 'true');
-            })
-        );
-    }
+        this.isAuthenticated.set(true);
+        this.currentUser.set({
+            uid: firebaseUser.uid,
+            email: firebaseUser.email
+        });
+    });
+  }
 
-    logout(): void {
-        this.isAuthenticated.set(false);
-        this.currentUser.set(null);
-        localStorage.removeItem('escritos_auth');
+  login(email: string, password: string): Observable<UserCredential> {
+    return from(signInWithEmailAndPassword(this.auth, email, password)).pipe(
+        catchError(err => throwError(() => mapFirebaseAuthError(err)))
+    );
+  }
+
+  logout(): Observable<void> {
+    return from(signOut(this.auth)).pipe(
+      tap(() => {
         this.router.navigate(['/login']);
-    }
+      })
+    );
+  }
 }

@@ -13,7 +13,7 @@ export class LibraryLayoutComponent {
   private authService = inject(AuthService);
 
   // Computed signals would be better but keeping simple
-  userName = () => this.authService.currentUser()?.name || 'Visitante';
+  userName = () => this.authService.currentUser()?.email || 'Visitante';
   userInitials = () => this.userName().slice(0, 2).toUpperCase();
 
   isMobileSidebarOpen = false;

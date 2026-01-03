@@ -2,6 +2,7 @@ import { Component, inject, signal } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { AuthService } from '../../core/auth/auth.service';
+import { finalize } from 'rxjs';
 
 @Component({
     selector: 'app-login',
@@ -18,13 +19,26 @@ export class LoginComponent {
     private authService = inject(AuthService);
     private router = inject(Router);
 
-    login() {
-        if (!this.email || !this.password) return;
+    login(): void {
+        if (!this.email || !this.password) {
+            console.error('Não foi possível ler seu e-mail e senha.');
+            return;
+        };
 
         this.isLoading.set(true);
-        this.authService.login(this.email, this.password).subscribe(() => {
-            this.isLoading.set(false);
-            this.router.navigate(['/biblioteca/dashboard']);
+        this.authService.login(this.email, this.password)
+        .pipe(finalize(() => this.isLoading.set(false)))
+        .subscribe({
+            next: () => {
+                this.router.navigate(['/biblioteca/dashboard']);
+            },
+            error: (err) => {
+                console.error(err);
+            }
         });
+    }
+
+    get canIsLogin(): boolean {
+        return !!this.email.trim().length && !!this.password.trim().length;
     }
 }
