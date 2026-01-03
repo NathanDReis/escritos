@@ -8,6 +8,7 @@ import { BooksComponent } from './pages/library/books/books.component';
 import { CategoriesComponent } from './pages/library/categories/categories.component';
 import { LoansComponent } from './pages/library/loans/loans.component';
 import { UsersComponent } from './pages/library/users/users.component';
+import { loginAuthGuard } from './core/guards/login.auth.guard';
 
 export const routes: Routes = [
     {
@@ -16,7 +17,8 @@ export const routes: Routes = [
     },
     {
         path: 'login',
-        component: LoginComponent
+        component: LoginComponent,
+        canActivate: [loginAuthGuard]
     },
     {
         path: 'biblioteca',
