@@ -30,6 +30,6 @@ jobs:
           server: ${{ secrets.FTP_SERVER }}
           username: ${{ secrets.FTP_USER }}
           password: ${{ secrets.FTP_PASSWORD }}
-          local-dir: dist/escritos/browser/
+          local-dir: dist/escritos/
           server-dir: ./
           dangerous-clean-slate: true
