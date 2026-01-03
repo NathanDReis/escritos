@@ -21,6 +21,11 @@ jobs:
       - name: Instalar dependências
         run: npm install
 
+      - name: Rodar semantic-release
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: npx semantic-release
+
       - name: Build Angular
         run: npm run build -- --configuration production --base-href /
 
