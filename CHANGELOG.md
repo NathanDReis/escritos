@@ -1,3 +1,10 @@
+# [1.1.0](https://github.com/NathanDReis/escritos/compare/v1.0.0...v1.1.0) (2026-01-03)
+
+
+### Features
+
+* **Settings:** Adding htaccess to the build ([40aa657](https://github.com/NathanDReis/escritos/commit/40aa657d20a073cfe55b8ebe557d1a0710bc35b3))
+
 # 1.0.0 (2026-01-03)
 
 
