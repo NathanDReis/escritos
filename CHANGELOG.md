@@ -1,3 +1,10 @@
+# [1.3.0](https://github.com/NathanDReis/escritos/compare/v1.2.0...v1.3.0) (2026-01-04)
+
+
+### Features
+
+* **Biblioteca:** Adding EGW Writings ([5ae408d](https://github.com/NathanDReis/escritos/commit/5ae408d5b43ffa8c5feb810d54ae4084e03a8fb4))
+
 # [1.1.0](https://github.com/NathanDReis/escritos/compare/v1.0.0...v1.1.0) (2026-01-03)
 
 
