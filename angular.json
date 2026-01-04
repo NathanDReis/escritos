@@ -23,7 +23,11 @@
                 "glob": "**/*",
                 "input": "public"
               },
-              "src/.htaccess"
+              {
+                "glob": ".htaccess",
+                "input": "src",
+                "output": "/"
+              }
             ],
             "styles": [
               "src/styles.css"
