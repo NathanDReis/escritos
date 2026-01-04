@@ -1,10 +1,3 @@
-# [1.2.0](https://github.com/NathanDReis/escritos/compare/v1.1.0...v1.2.0) (2026-01-03)
-
-
-### Features
-
-* **Auth:** login implementation ([c0c61fc](https://github.com/NathanDReis/escritos/commit/c0c61fc73b8511dc66f9da23eac0642286741b31))
-
 # [1.1.0](https://github.com/NathanDReis/escritos/compare/v1.0.0...v1.1.0) (2026-01-03)
 
 
