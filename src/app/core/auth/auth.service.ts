@@ -1,6 +1,6 @@
 import { inject, Injectable, signal } from '@angular/core';
 import { Router } from '@angular/router';
-import { Auth, signInWithEmailAndPassword, signOut, user, UserCredential } from '@angular/fire/auth';
+import { Auth, sendPasswordResetEmail, signInWithEmailAndPassword, signOut, User, user, UserCredential } from '@angular/fire/auth';
 import { Observable, Subscription, from, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { mapFirebaseAuthError } from './firebase-auth-error.mapper';
@@ -14,7 +14,8 @@ export class AuthService {
   private router = inject(Router);
 
   isAuthenticated = signal<boolean>(false);
-  currentUser = signal<{ uid: string; email: string | null } | null>(null);
+  firebaseUser = signal<User | null>(null);
+  currentUser = signal<{ uid: string; email: string | null, name: string | null } | null>(null);
   authInitialized = signal<boolean>(false);
 
   constructor() {
@@ -23,14 +24,17 @@ export class AuthService {
 
       if (!firebaseUser) {
         this.isAuthenticated.set(false);
+        this.firebaseUser.set(null);
         this.currentUser.set(null);
         return;
       }
 
       this.isAuthenticated.set(true);
+      this.firebaseUser.set(firebaseUser);
       this.currentUser.set({
         uid: firebaseUser.uid,
-        email: firebaseUser.email
+        email: firebaseUser.email,
+        name: firebaseUser.displayName
       });
     });
   }
@@ -49,5 +53,14 @@ export class AuthService {
         this.router.navigate(['/login']);
       }
     });;
+  }
+
+  async changePassword(): Promise<void> {
+    if (!this.currentUser()?.email) return;
+
+    await sendPasswordResetEmail(this.auth, this.currentUser()!.email!, {
+      url: 'https://escritos.nathanreis.com.br',
+      handleCodeInApp: false
+    });
   }
 }

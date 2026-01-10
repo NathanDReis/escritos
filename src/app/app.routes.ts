@@ -11,6 +11,7 @@ import { UsersComponent } from './pages/library/users/users.component';
 import { loginAuthGuard } from './core/guards/login.auth.guard';
 import { EgwLayoutComponent } from './core/layout/egw-layout/egw-layout.component';
 import { EgwReadComponent } from './pages/library/egw-read/egw-read.component';
+import { ProfileComponent } from './pages/library/profile/profile.component';
 
 export const routes: Routes = [
     {
@@ -33,6 +34,7 @@ export const routes: Routes = [
             { path: 'categorias', component: CategoriesComponent },
             { path: 'emprestimos', component: LoansComponent },
             { path: 'usuarios', component: UsersComponent },
+            { path: 'perfil', component: ProfileComponent },
             {
                 path: '**',
                 redirectTo: '/biblioteca/dashboard'

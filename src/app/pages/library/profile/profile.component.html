@@ -1,0 +1,98 @@
+<div class="space-y-10 max-w-5xl mx-auto">
+
+  <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
+    <div>
+      <h2 class="text-3xl font-serif font-bold text-slate-800 tracking-tight">
+        Meu Perfil
+      </h2>
+      <p class="text-slate-500 mt-1">
+        Gerencie suas informações pessoais.
+      </p>
+    </div>
+  </div>
+
+  <div
+    class="bg-white p-8 rounded-2xl border border-slate-100 shadow-sm hover:shadow-lg transition-all">
+
+    <div class="flex items-center gap-6 mb-8">
+      <div
+        class="w-20 h-20 rounded-2xl bg-slate-50 flex items-center justify-center border border-slate-100 overflow-hidden">
+        @if (auth.firebaseUser()?.photoURL) {
+          <img
+            [src]="auth.firebaseUser()?.photoURL"
+            class="w-full h-full object-cover"
+          />
+        }
+        <ng-template #fallback>
+          <span class="text-3xl font-bold text-slate-500">
+            {{ auth.firebaseUser()?.displayName?.charAt(0) || '?' }}
+          </span>
+        </ng-template>
+      </div>
+
+      <div>
+        <h3 class="text-xl font-bold text-slate-800 leading-tight">
+          {{ auth.firebaseUser()?.displayName || 'Usuário' }}
+        </h3>
+        <p class="text-sm text-slate-400 font-medium">
+          {{ auth.firebaseUser()?.email }}
+        </p>
+      </div>
+    </div>
+
+    <form [formGroup]="form" class="grid grid-cols-1 md:grid-cols-2 gap-6">
+
+      <div>
+        <label class="block text-sm font-medium text-slate-600 mb-1">
+          Nome
+        </label>
+        <input
+          type="text"
+          formControlName="displayName"
+          class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:ring-2 focus:ring-blue-500 outline-none"
+        />
+      </div>
+
+      <div>
+        <label class="block text-sm font-medium text-slate-600 mb-1">
+          URL do Avatar
+        </label>
+        <input
+          type="text"
+          formControlName="photoURL"
+          placeholder="https://..."
+          class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:ring-2 focus:ring-blue-500 outline-none"
+        />
+      </div>
+
+    </form>
+
+    <div class="flex justify-end mt-8">
+      <button
+        type="button"
+        (click)="salvar()"
+        class="bg-slate-800 text-white px-6 py-3 rounded-xl hover:bg-slate-900 transition-all shadow-md font-medium">
+        Salvar alterações
+      </button>
+    </div>
+  </div>
+
+  <div
+    class="bg-white p-8 rounded-2xl border border-slate-100 shadow-sm">
+
+    <h3 class="text-lg font-bold text-slate-800 mb-2">
+      Segurança
+    </h3>
+    <p class="text-sm text-slate-500 mb-6">
+      Para alterar sua senha, utilize o fluxo de recuperação.
+    </p>
+
+    <button
+      class="px-6 py-3 rounded-xl border border-slate-200 text-slate-600 hover:bg-slate-50 transition-all font-medium"
+      (click)="changePassword()"
+    >
+      Alterar senha
+    </button>
+  </div>
+
+</div>
