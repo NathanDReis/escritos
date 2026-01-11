@@ -12,7 +12,6 @@ import { AuthService } from '../../auth/auth.service';
 export class LibraryLayoutComponent {
   private authService = inject(AuthService);
 
-  // Computed signals would be better but keeping simple
   userName = () => this.authService.currentUser()?.name || 'Usuário';
   userPhotoUrl = () => this.authService.currentUser()?.photoURL;
   userInitials = () => this.userName().slice(0, 2).toUpperCase();
