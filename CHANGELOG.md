@@ -1,3 +1,10 @@
+# [1.4.0](https://github.com/NathanDReis/escritos/compare/v1.3.0...v1.4.0) (2026-01-10)
+
+
+### Features
+
+* **Auth:** Profile screen ([34ea83d](https://github.com/NathanDReis/escritos/commit/34ea83df2a6bb377ef33ad8b327fd2b937fceb7e))
+
 # [1.3.0](https://github.com/NathanDReis/escritos/compare/v1.2.0...v1.3.0) (2026-01-04)
 
 
