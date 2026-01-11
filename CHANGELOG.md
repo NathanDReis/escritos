@@ -1,3 +1,11 @@
+# [1.5.0](https://github.com/NathanDReis/escritos/compare/v1.4.0...v1.5.0) (2026-01-11)
+
+
+### Features
+
+* **Auth:** Adjustments. ([9427bfc](https://github.com/NathanDReis/escritos/commit/9427bfc81cf6d5dfb5685ede1019b658d73e7e14))
+* **Auth:** Change user profile picture and email address. ([43e2fb4](https://github.com/NathanDReis/escritos/commit/43e2fb47cdf4ec76c5392feaeb61749f6a044998))
+
 # [1.4.0](https://github.com/NathanDReis/escritos/compare/v1.3.0...v1.4.0) (2026-01-10)
 
 
