@@ -14,6 +14,7 @@ export class LibraryLayoutComponent {
 
   // Computed signals would be better but keeping simple
   userName = () => this.authService.currentUser()?.name || 'Usuário';
+  userPhotoUrl = () => this.authService.currentUser()?.photoURL;
   userInitials = () => this.userName().slice(0, 2).toUpperCase();
 
   isMobileSidebarOpen = false;

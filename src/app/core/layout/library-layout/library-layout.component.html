@@ -182,7 +182,17 @@
                     </div>
                     <div
                         class="w-9 h-9 rounded-full bg-slate-100 border border-slate-200 flex items-center justify-center text-blue-700 font-bold text-xs shadow-sm">
-                        {{ userInitials() }}
+                        @if (userPhotoUrl()) {
+                            <img
+                                [src]="userPhotoUrl()"
+                                class="w-full h-full object-cover rounded-xl"
+                            />
+                        }
+                        @else {
+                            <p>
+                                {{ userInitials() }}
+                            </p>
+                        }
                     </div>
                 </div>
             </div>

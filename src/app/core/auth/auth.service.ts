@@ -1,6 +1,6 @@
 import { inject, Injectable, signal } from '@angular/core';
 import { Router } from '@angular/router';
-import { Auth, sendPasswordResetEmail, signInWithEmailAndPassword, signOut, User, user, UserCredential } from '@angular/fire/auth';
+import { Auth, sendPasswordResetEmail, signInWithEmailAndPassword, signOut, User, user, UserCredential, verifyBeforeUpdateEmail } from '@angular/fire/auth';
 import { Observable, Subscription, from, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { mapFirebaseAuthError } from './firebase-auth-error.mapper';
@@ -15,7 +15,12 @@ export class AuthService {
 
   isAuthenticated = signal<boolean>(false);
   firebaseUser = signal<User | null>(null);
-  currentUser = signal<{ uid: string; email: string | null, name: string | null } | null>(null);
+  currentUser = signal<{ 
+    uid: string; 
+    email: string | null, 
+    name: string | null,
+    photoURL: string | null
+  } | null>(null);
   authInitialized = signal<boolean>(false);
 
   constructor() {
@@ -34,7 +39,8 @@ export class AuthService {
       this.currentUser.set({
         uid: firebaseUser.uid,
         email: firebaseUser.email,
-        name: firebaseUser.displayName
+        name: firebaseUser.displayName,
+        photoURL: firebaseUser.photoURL
       });
     });
   }
@@ -55,12 +61,17 @@ export class AuthService {
     });;
   }
 
-  async changePassword(): Promise<void> {
-    if (!this.currentUser()?.email) return;
+  async changePassword(email?: string): Promise<void> {
+    if (!((this.currentUser() && this.currentUser()?.email) || email)) return;
 
-    await sendPasswordResetEmail(this.auth, this.currentUser()!.email!, {
-      url: 'https://escritos.nathanreis.com.br',
-      handleCodeInApp: false
-    });
+    const sendEmail = email ? email : this.currentUser()!.email!
+    await sendPasswordResetEmail(this.auth, sendEmail);
+  }
+
+  async changeEmail(newEmail: string): Promise<void> {
+    const user = this.firebaseUser();
+    if (!user) return;
+
+    await verifyBeforeUpdateEmail(user, newEmail);
   }
 }

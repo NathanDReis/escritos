@@ -93,6 +93,26 @@
     >
       Alterar senha
     </button>
+
+    <div class="mt-5">
+      <label class="block text-sm font-medium text-slate-600 mb-1">
+          Alterar e-mail:
+        </label>
+      <input
+        id="email"
+        type="email"
+        [(ngModel)]="newEmail"
+        placeholder="novoemail@email.com"
+        class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:ring-2 focus:ring-blue-500 outline-none"
+      />
+    </div>
+
+    <button
+      class="px-6 py-3 mt-4 rounded-xl border border-slate-200 text-slate-600 hover:bg-slate-50 transition-all font-medium"
+      (click)="changeEmail()"
+    >
+      Salvar
+    </button>
   </div>
 
 </div>
