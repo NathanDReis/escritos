@@ -7,7 +7,6 @@ import { DashboardComponent } from './pages/library/dashboard/dashboard.componen
 import { BooksComponent } from './pages/library/books/books.component';
 import { CategoriesComponent } from './pages/library/categories/categories.component';
 import { LoansComponent } from './pages/library/loans/loans.component';
-import { UsersComponent } from './pages/library/users/users.component';
 import { loginAuthGuard } from './core/guards/login.auth.guard';
 import { EgwLayoutComponent } from './core/layout/egw-layout/egw-layout.component';
 import { EgwReadComponent } from './pages/library/egw-read/egw-read.component';
@@ -33,7 +32,6 @@ export const routes: Routes = [
             { path: 'livros', component: BooksComponent },
             { path: 'categorias', component: CategoriesComponent },
             { path: 'emprestimos', component: LoansComponent },
-            { path: 'usuarios', component: UsersComponent },
             { path: 'perfil', component: ProfileComponent },
             {
                 path: '**',
