@@ -2,6 +2,7 @@
     "conventionalCommits.scopes": [
         "Settings",
         "Auth",
-        "Biblioteca"
+        "Biblioteca",
+        "Component"
     ]
 }

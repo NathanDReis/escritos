@@ -3,6 +3,7 @@ import { Router, RouterLink } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { AuthService } from '../../core/auth/auth.service';
 import { finalize } from 'rxjs';
+import { LoadingService } from '../../shared/components/loading/loading.service';
 
 @Component({
     selector: 'app-login',
@@ -14,10 +15,10 @@ import { finalize } from 'rxjs';
 export class LoginComponent {
     email = '';
     password = '';
-    isLoading = signal(false);
 
     private authService = inject(AuthService);
     private router = inject(Router);
+    loadingService = inject(LoadingService);
 
     login(): void {
         if (!this.email || !this.password) {
@@ -25,9 +26,9 @@ export class LoginComponent {
             return;
         };
 
-        this.isLoading.set(true);
+        this.loadingService.isLoading.set(true);
         this.authService.login(this.email, this.password)
-        .pipe(finalize(() => this.isLoading.set(false)))
+        .pipe(finalize(() => this.loadingService.isLoading.set(false)))
         .subscribe({
             next: () => {
                 this.router.navigate(['/biblioteca/dashboard']);
