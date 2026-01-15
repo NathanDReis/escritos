@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { AuthService } from '../../core/auth/auth.service';
 import { finalize } from 'rxjs';
 import { LoadingService } from '../../shared/components/loading/loading.service';
+import { ToastService } from '../../shared/components/toast/toast.service';
 
 @Component({
     selector: 'app-login',
@@ -18,7 +19,8 @@ export class LoginComponent {
 
     private authService = inject(AuthService);
     private router = inject(Router);
-    loadingService = inject(LoadingService);
+    private loadingService = inject(LoadingService);
+    private toast = inject(ToastService);
 
     login(): void {
         if (!this.email || !this.password) {
@@ -34,7 +36,7 @@ export class LoginComponent {
                 this.router.navigate(['/biblioteca/dashboard']);
             },
             error: (err) => {
-                console.error(err);
+                this.toast.error(err)
             }
         });
     }

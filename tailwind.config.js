@@ -26,6 +26,17 @@ module.exports = {
       colors: {
         indigo: colors.indigo,
         stone: colors.stone,
+
+        toast: {
+          success: colors.indigo,
+          info: colors.stone,
+          warning: colors.yellow,
+          error: colors.red,
+        }
+      },
+
+      zIndex: {
+        toast: '9999',
       },
 
       keyframes: {
