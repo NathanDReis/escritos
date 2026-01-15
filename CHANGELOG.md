@@ -1,3 +1,10 @@
+# [1.7.0](https://github.com/NathanDReis/escritos/compare/v1.6.0...v1.7.0) (2026-01-15)
+
+
+### Features
+
+* **Component:** Toast ([7f0f5a8](https://github.com/NathanDReis/escritos/commit/7f0f5a8df7e5044b150f88bef46d60c61ee08e97))
+
 # [1.6.0](https://github.com/NathanDReis/escritos/compare/v1.5.0...v1.6.0) (2026-01-15)
 
 
