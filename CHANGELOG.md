@@ -1,3 +1,11 @@
+# [1.6.0](https://github.com/NathanDReis/escritos/compare/v1.5.0...v1.6.0) (2026-01-15)
+
+
+### Features
+
+* **Biblioteca:** Adjusting the menu and link to the profile. ([5f21c45](https://github.com/NathanDReis/escritos/commit/5f21c451cebb61a803b5575d8e8eb2499db10e75))
+* **Component:** Login component created. ([349e5c6](https://github.com/NathanDReis/escritos/commit/349e5c6d4d5e84a62f87205f5b86a98eac4ce931))
+
 # [1.5.0](https://github.com/NathanDReis/escritos/compare/v1.4.0...v1.5.0) (2026-01-11)
 
 
