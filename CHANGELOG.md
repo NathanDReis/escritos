@@ -1,3 +1,10 @@
+# [1.8.0](https://github.com/NathanDReis/escritos/compare/v1.7.0...v1.8.0) (2026-01-16)
+
+
+### Features
+
+* **Component:** Firebase books ([486b9ca](https://github.com/NathanDReis/escritos/commit/486b9cac8859e437a668e9dcce5b1a0076a55ad2))
+
 # [1.7.0](https://github.com/NathanDReis/escritos/compare/v1.6.0...v1.7.0) (2026-01-15)
 
 
