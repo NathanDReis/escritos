@@ -1,6 +1,10 @@
 import { Injectable } from '@angular/core';
-import { Observable, of } from 'rxjs';
-import { Book, Category, Loan, ReaderRanking, User } from '../../shared/models';
+import { Observable } from 'rxjs';
+import { User } from '../../shared/models';
+import { Book } from '../../pages/library/books/books.interface';
+import { ReaderRanking, Stats } from '../../pages/library/dashboard/dashboard.interface';
+import { Loan } from '../../pages/library/loans/loans.interface';
+import { Category } from '../../pages/library/categories/categories.interface';
 
 @Injectable({
     providedIn: 'root'
@@ -17,14 +21,14 @@ export class MockDataService {
     ];
 
     private books: Book[] = [
-        { id: 1, title: 'O Peregrino', author: 'John Bunyan', category: 'Ensinos Bíblicos', status: 'Disponível' },
-        { id: 2, title: 'História da Reforma', author: 'Carter Lindberg', category: 'História da Igreja', status: 'Emprestado' },
-        { id: 3, title: 'Manual do Diaconato', author: 'Igreja Local', category: 'Manuais Ministeriais', status: 'Disponível' },
-        { id: 4, title: 'Bíblia Ilustrada', author: 'Vários', category: 'Infantil', status: 'Disponível' },
-        { id: 5, title: 'O Significado do Casamento', author: 'Timothy Keller', category: 'Casais e Família', status: 'Emprestado' },
-        { id: 6, title: 'Cristianismo Puro e Simples', author: 'C.S. Lewis', category: 'Ensinos Bíblicos', status: 'Disponível' },
-        { id: 7, title: 'A Cruz de Cristo', author: 'John Stott', category: 'Ensinos Bíblicos', status: 'Disponível' },
-        { id: 8, title: 'Confissões', author: 'Agostinho', category: 'História da Igreja', status: 'Disponível' },
+        { 
+            id: '1', 
+            title: 'Vida e Ensinos', 
+            author: 'Ellen G. White', 
+            image: 'https://images.pexels.com/photos/36113085/pexels-photo-36113085.jpeg',
+            category: 'Disponível', 
+            status: 'Disponível' 
+        }
     ];
 
     private users: User[] = [
@@ -62,31 +66,39 @@ export class MockDataService {
         { position: 3, userId: 7, name: 'Lucas Mendes', email: 'lucas@email.com', totalLoans: 31, avatarColor: '#ec4899' },
         { position: 4, userId: 4, name: 'Fernanda Lima', email: 'fernanda@email.com', totalLoans: 24, avatarColor: '#14b8a6' },
         { position: 5, userId: 1, name: 'João Silva', email: 'joao@email.com', totalLoans: 19, avatarColor: 'tomato' },
-        { position: 6, userId: 6, name: 'Roberta Schneider', email: 'roberta@email.com', totalLoans: 19, avatarColor: '#f59e0b' },
-        { position: 7, userId: 3, name: 'Carlos Drummond', email: 'carlos@email.com', totalLoans: 19, avatarColor: 'green' },
-        { position: 8, userId: 8, name: 'Fernando Pessoa', email: 'fernando@email.com', totalLoans: 19, avatarColor: 'orange' },
+        { position: 6, userId: 6, name: 'Roberta Schneider', email: 'roberta@email.com', totalLoans: 15, avatarColor: '#f59e0b' },
+        { position: 7, userId: 3, name: 'Carlos Drummond', email: 'carlos@email.com', totalLoans: 9, avatarColor: 'green' },
+        { position: 8, userId: 8, name: 'Fernando Pessoa', email: 'fernando@email.com', totalLoans: 8, avatarColor: 'orange' },
     ];
 
     constructor() { }
 
+    observableTime<T>(data: T): Observable<T> {
+        return new Observable((observable) => {
+            setTimeout(() => {
+                observable.next(data);
+            }, 5000);
+        });
+    }
+
     getCategories(): Observable<Category[]> {
-        return of(this.categories);
+        return this.observableTime(this.categories);
     }
 
     getBooks(): Observable<Book[]> {
-        return of(this.books);
+        return this.observableTime(this.books);
     }
 
     getUsers(): Observable<User[]> {
-        return of(this.users);
+        return this.observableTime(this.users);
     }
 
     getLoans(): Observable<Loan[]> {
-        return of(this.loans);
+        return this.observableTime(this.loans);
     }
 
-    getDashboardStats(): Observable<any> {
-        return of({
+    getDashboardStats(): Observable<Stats> {
+        return this.observableTime({
             totalBooks: this.books.length,
             availableBooks: this.books.filter(b => b.status === 'Disponível').length,
             activeLoans: this.loans.filter(l => l.status !== 'Devolvido').length,
@@ -95,6 +107,6 @@ export class MockDataService {
     }
 
     getReaderRanking(): Observable<ReaderRanking[]> {
-        return of([...this.readerRanking].sort((a, b) => a.position - b.position));
+        return this.observableTime([...this.readerRanking].sort((a, b) => a.position - b.position));
     }
 }

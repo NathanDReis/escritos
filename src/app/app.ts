@@ -20,5 +20,5 @@ import { ToastComponent } from './shared/components/toast/toast.component';
   styleUrl: './app.css'
 })
 export class App {
-  loadingService = inject(LoadingService);
+  loading = inject(LoadingService);
 }

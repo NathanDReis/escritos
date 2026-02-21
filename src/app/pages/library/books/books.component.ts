@@ -4,6 +4,7 @@ import { BooksService } from './books.service';
 import { Book } from './books.interface';
 import { ToastService } from '../../../shared/components/toast/toast.service';
 import { LoadingService } from '../../../shared/components/loading/loading.service';
+import { firstValueFrom } from 'rxjs';
 
 @Component({
    selector: 'app-books',
@@ -20,14 +21,12 @@ export class BooksComponent implements OnInit {
 
    async ngOnInit(): Promise<void> {
       try {
-         this.loading.isLoading.set(true);
-         this.books = await this.booksService.getAllBooks();
-         console.log(this.books);
+         this.loading.start();
+         this.books = await firstValueFrom(this.booksService.getAllBooks());
       } catch (err) {
-         console.error(err);
          this.toast.error("Não foi possível encontrar os livros.");
       } finally {
-         this.loading.isLoading.set(false);
+         this.loading.stop();
       }
    }
 }

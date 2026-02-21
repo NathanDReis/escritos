@@ -9,7 +9,7 @@
     </div>
 
     <!-- RANKING DE LEITORES -->
-    @if (ranking$ | async; as ranking) {
+    @if (ranking) {
     <div class="bg-white rounded-2xl border border-slate-100 shadow-sm overflow-hidden">
         <!-- Header -->
         <div class="px-8 pt-8 pb-4 bg-gradient-to-br from-slate-800 to-slate-700">
@@ -203,7 +203,7 @@
     </div>
     }
 
-    @if (stats$ | async; as stats) {
+    @if (stats) {
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
         <div
             class="bg-white p-6 rounded-2xl border border-slate-100 shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300">

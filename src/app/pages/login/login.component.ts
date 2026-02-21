@@ -19,18 +19,18 @@ export class LoginComponent {
 
     private authService = inject(AuthService);
     private router = inject(Router);
-    private loadingService = inject(LoadingService);
+    private loading = inject(LoadingService);
     private toast = inject(ToastService);
 
     login(): void {
         if (!this.email || !this.password) {
-            console.error('Não foi possível ler seu e-mail e senha.');
+            this.toast.error('Não foi possível ler seu e-mail e senha.');
             return;
         };
 
-        this.loadingService.isLoading.set(true);
+        this.loading.start();
         this.authService.login(this.email, this.password)
-        .pipe(finalize(() => this.loadingService.isLoading.set(false)))
+        .pipe(finalize(() => this.loading.stop()))
         .subscribe({
             next: () => {
                 this.router.navigate(['/biblioteca/dashboard']);

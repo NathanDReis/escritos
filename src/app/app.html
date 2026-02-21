@@ -1,7 +1,7 @@
 <router-outlet></router-outlet>
 <app-scroll-to-top></app-scroll-to-top>
 <app-toast></app-toast>
-@if (loadingService.Loading) {
+@if (loading.value) {
     <app-loading  
         class="fixed inset-0 z-[9999] flex items-center justify-center bg-[#fff9]"
     ></app-loading>

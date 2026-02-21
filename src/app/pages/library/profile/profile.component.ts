@@ -1,8 +1,9 @@
-import { Component, effect, inject, NgModule } from '@angular/core';
+import { Component, effect, inject } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, FormsModule } from '@angular/forms';
 import {  reload, updateProfile, User } from '@angular/fire/auth';
 import { CommonModule } from '@angular/common';
 import { AuthService } from '../../../core/auth/auth.service';
+import { ToastService } from '../../../shared/components/toast/toast.service';
 
 @Component({
   selector: 'app-profile.component',
@@ -12,8 +13,9 @@ import { AuthService } from '../../../core/auth/auth.service';
   styles: ``,
 })
 export class ProfileComponent {
+  private toast = inject(ToastService);
+  
   auth = inject(AuthService);
-
   newEmail: string = '';
   
   form = new FormGroup({
@@ -30,7 +32,6 @@ export class ProfileComponent {
         displayName: user.displayName,
         photoURL: user.photoURL,
       });
-
     });
   }
 
@@ -46,7 +47,7 @@ export class ProfileComponent {
   
       await this.refreshFirebaseUser(user);
     } catch (err) {
-      console.error(err);
+      this.toast.error("Não foi possível salvar seus dados agora.");
     }
   }
 
@@ -64,7 +65,7 @@ export class ProfileComponent {
         photoURL: user.photoURL
       });
     } catch (err) {
-      console.error(err);
+      this.toast.error("Não foi possível carregar seus dados no momento.");
     }
   }
 
@@ -72,7 +73,7 @@ export class ProfileComponent {
     try {
       await this.auth.changePassword();
     } catch (err) {
-      console.error(err);
+      this.toast.error("Não foi possível alterar sua senha no momento.");
     }
   }
 
@@ -82,7 +83,7 @@ export class ProfileComponent {
 
       await this.auth.changeEmail(this.newEmail);
     } catch (err) {
-      console.error(err);
+      this.toast.error("Não foi possível alterar o seu e-mail no momento.");
     }
   }
 }
