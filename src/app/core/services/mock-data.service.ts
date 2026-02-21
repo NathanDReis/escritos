@@ -22,11 +22,11 @@ export class MockDataService {
 
     private books: Book[] = [
         { 
-            id: '1', 
+            id: '1ddddddddddddddddddddddddddddddddddddssssssssss', 
             title: 'Vida e Ensinos', 
             author: 'Ellen G. White', 
             image: 'https://images.pexels.com/photos/36113085/pexels-photo-36113085.jpeg',
-            category: 'Disponível', 
+            category: 'História', 
             status: 'Disponível' 
         }
     ];

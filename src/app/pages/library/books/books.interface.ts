@@ -5,6 +5,6 @@ export interface Book {
     title: string,
     image: string,
     author: string,
-    status: string,
-    category: BookStatus,
+    status: BookStatus,
+    category: string,
 }

@@ -22,10 +22,10 @@
     </div>
 
     @if (books) {
-    <div class="flex flex-wrap basis-80 gap-8 items-center justify-center">
+    <div class="flex flex-wrap gap-8 items-center justify-start">
         @for (book of books; track book.id) {
         <div
-            class="bg-white pl-4 pr-4 pt-3 grow hover:shadow-xl hover:shadow-slate-200/50 transition-all duration-300 group border border-slate-100/50 hover:border-slate-200 cursor-pointer flex flex-col">
+            class="bg-white pl-4 pr-4 pt-3 max-w-[300px] grow hover:shadow-xl hover:shadow-slate-200/50 transition-all duration-300 group border border-slate-100/50 hover:border-slate-200 cursor-pointer flex flex-col">
             <div
                 class="aspect-2/3 bg-slate-50 rounded-xl mb-5 relative overflow-hidden
                         group-hover:bg-slate-100 transition-colors image"
@@ -49,11 +49,12 @@
                     {{ book.title }}</h3>
                 <p class="text-sm text-slate-500 mb-4">{{ book.author }}</p>
 
-                <div class="mt-auto pt-4 border-t border-slate-50 flex items-center justify-between text-slate-400">
+                <div class="mt-auto pt-4 mb-3 border-t border-slate-50 flex items-center justify-between text-slate-400">
                     <span class="text-xs font-medium max-w-[70%] text-ellipsis overflow-hidden">#{{ book.id }}</span>
                     @if (book.status === 'Disponível') {
                         <button
-                            class="w-8 h-8 rounded-full hover:bg-blue-100 flex items-center justify-center text-blue-400 hover:text-blue-900 transition-colors cursor-pointer">
+                            class="p-3 gap-1 rounded-full hover:bg-blue-100 flex items-center justify-center text-blue-400 hover:text-blue-900 transition-colors cursor-pointer">
+                            Solicitar
                             <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="currentColor"><path d="M240-80q-33 0-56.5-23.5T160-160v-640q0-33 23.5-56.5T240-880h480q33 0 56.5 23.5T800-800v640q0 33-23.5 56.5T720-80H240Zm0-80h480v-640h-80v280l-100-60-100 60v-280H240v640Zm0 0v-640 640Zm200-360 100-60 100 60-100-60-100 60Z"/></svg>
                         </button>
                     }
