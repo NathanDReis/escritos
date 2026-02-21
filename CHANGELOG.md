@@ -1,3 +1,11 @@
+# [1.10.0](https://github.com/NathanDReis/escritos/compare/v1.9.0...v1.10.0) (2026-02-21)
+
+
+### Features
+
+* **Biblioteca:** melhorando a estilização dos livros ([3287ecb](https://github.com/NathanDReis/escritos/commit/3287ecb260288ee8195083ba03bd62bce35dc001))
+* **Settings:** estruturando os services ([32d0f89](https://github.com/NathanDReis/escritos/commit/32d0f89de98f659df70ae993599a89d6641e4b52))
+
 # [1.9.0](https://github.com/NathanDReis/escritos/compare/v1.8.0...v1.9.0) (2026-02-21)
 
 
