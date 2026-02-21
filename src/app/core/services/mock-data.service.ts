@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
-import { Book, Category, Loan, User } from '../../shared/models';
+import { Book, Category, Loan, ReaderRanking, User } from '../../shared/models';
 
 @Injectable({
     providedIn: 'root'
@@ -56,6 +56,17 @@ export class MockDataService {
         },
     ];
 
+    private readerRanking: ReaderRanking[] = [
+        { position: 1, userId: 5, name: 'Ana Carolina Ferreira', email: 'ana.ferreira@email.com', totalLoans: 47, avatarColor: '#6366f1' },
+        { position: 2, userId: 2, name: 'Maria Souza', email: 'maria@email.com', totalLoans: 38, avatarColor: '#8b5cf6' },
+        { position: 3, userId: 7, name: 'Lucas Mendes', email: 'lucas@email.com', totalLoans: 31, avatarColor: '#ec4899' },
+        { position: 4, userId: 4, name: 'Fernanda Lima', email: 'fernanda@email.com', totalLoans: 24, avatarColor: '#14b8a6' },
+        { position: 5, userId: 1, name: 'João Silva', email: 'joao@email.com', totalLoans: 19, avatarColor: 'tomato' },
+        { position: 6, userId: 6, name: 'Roberta Schneider', email: 'roberta@email.com', totalLoans: 19, avatarColor: '#f59e0b' },
+        { position: 7, userId: 3, name: 'Carlos Drummond', email: 'carlos@email.com', totalLoans: 19, avatarColor: 'green' },
+        { position: 8, userId: 8, name: 'Fernando Pessoa', email: 'fernando@email.com', totalLoans: 19, avatarColor: 'orange' },
+    ];
+
     constructor() { }
 
     getCategories(): Observable<Category[]> {
@@ -81,5 +92,9 @@ export class MockDataService {
             activeLoans: this.loans.filter(l => l.status !== 'Devolvido').length,
             totalUsers: this.users.length
         });
+    }
+
+    getReaderRanking(): Observable<ReaderRanking[]> {
+        return of([...this.readerRanking].sort((a, b) => a.position - b.position));
     }
 }

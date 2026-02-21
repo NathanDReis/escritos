@@ -39,3 +39,12 @@ export interface Loan {
   returnDate: Date;
   status: LoanStatus;
 }
+
+export interface ReaderRanking {
+  position: number;
+  userId: number;
+  name: string;
+  email: string;
+  totalLoans: number;
+  avatarColor: string;
+}
