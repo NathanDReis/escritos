@@ -1,3 +1,12 @@
+# [1.9.0](https://github.com/NathanDReis/escritos/compare/v1.8.0...v1.9.0) (2026-02-21)
+
+
+### Features
+
+* **Biblioteca:** ajuste no layout dos livros ([e934844](https://github.com/NathanDReis/escritos/commit/e9348440ad10a33ae4bca1b9ad71b27223c08737))
+* **Biblioteca:** ajustes no menu ([a19154a](https://github.com/NathanDReis/escritos/commit/a19154a2285e8f78c837e281c0c7e8a0cae3c5b0))
+* **Biblioteca:** ranking de leitores ([fe109b3](https://github.com/NathanDReis/escritos/commit/fe109b3284014e48d5218887dcc64db48e831c1a))
+
 # [1.8.0](https://github.com/NathanDReis/escritos/compare/v1.7.0...v1.8.0) (2026-01-16)
 
 
