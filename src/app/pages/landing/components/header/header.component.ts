@@ -15,10 +15,10 @@ import { RouterLink } from '@angular/router';
 })
 export class HeaderComponent {
   menuItems = [
-    { label: 'Início', link: '#' },
     { label: 'Sobre', link: '#sobre' },
     { label: 'Categorias', link: '#categorias' },
-    { label: 'Contato', link: '#footer' }
+    { label: 'Contato', link: '#footer' },
+    { label: 'EGW', link: 'https://m.egwwritings.org/pt', external: true }
   ];
 
   isMobileMenuOpen = false;

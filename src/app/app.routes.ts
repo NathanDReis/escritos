@@ -8,8 +8,6 @@ import { BooksComponent } from './pages/library/books/books.component';
 import { CategoriesComponent } from './pages/library/categories/categories.component';
 import { LoansComponent } from './pages/library/loans/loans.component';
 import { loginAuthGuard } from './core/guards/login.auth.guard';
-import { EgwLayoutComponent } from './core/layout/egw-layout/egw-layout.component';
-import { EgwReadComponent } from './pages/library/egw-read/egw-read.component';
 import { ProfileComponent } from './pages/library/profile/profile.component';
 
 export const routes: Routes = [
@@ -33,17 +31,6 @@ export const routes: Routes = [
             { path: 'categorias', component: CategoriesComponent },
             { path: 'emprestimos', component: LoansComponent },
             { path: 'perfil', component: ProfileComponent },
-            {
-                path: '**',
-                redirectTo: '/biblioteca/dashboard'
-            }
-        ]
-    },
-    { 
-        path: 'egw', 
-        component: EgwLayoutComponent,
-        children: [
-            { path: 'ler', component: EgwReadComponent },
             {
                 path: '**',
                 redirectTo: '/biblioteca/dashboard'
