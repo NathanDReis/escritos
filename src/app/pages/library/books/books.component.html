@@ -22,10 +22,10 @@
     </div>
 
     @if (books) {
-    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-8">
+    <div class="flex flex-wrap basis-80 gap-8 items-center justify-center">
         @for (book of books; track book.id) {
         <div
-            class="bg-white rounded-2xl p-4 hover:shadow-xl hover:shadow-slate-200/50 transition-all duration-300 group border border-slate-100/50 hover:border-slate-200 cursor-pointer flex flex-col h-full">
+            class="bg-white pl-4 pr-4 pt-3 grow hover:shadow-xl hover:shadow-slate-200/50 transition-all duration-300 group border border-slate-100/50 hover:border-slate-200 cursor-pointer flex flex-col">
             <div
                 class="aspect-2/3 bg-slate-50 rounded-xl mb-5 relative overflow-hidden
                         group-hover:bg-slate-100 transition-colors image"
@@ -50,7 +50,7 @@
                 <p class="text-sm text-slate-500 mb-4">{{ book.author }}</p>
 
                 <div class="mt-auto pt-4 border-t border-slate-50 flex items-center justify-between text-slate-400">
-                    <span class="text-xs font-medium">#{{ book.id }}</span>
+                    <span class="text-xs font-medium max-w-[70%] text-ellipsis overflow-hidden">#{{ book.id }}</span>
                     @if (book.status === 'Disponível') {
                         <button
                             class="w-8 h-8 rounded-full hover:bg-blue-100 flex items-center justify-center text-blue-400 hover:text-blue-900 transition-colors cursor-pointer">
